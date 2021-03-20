@@ -1,0 +1,11 @@
+version: "3"
+services: 
+    mongo_1:
+        image: "mongo"
+    
+    app_1:
+        build: .
+        depends_on: 
+            - mongo_1
+        ports:
+            - "5001:5001"
