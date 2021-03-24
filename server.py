@@ -9,7 +9,7 @@ app = Flask(__name__)
 # Setup MongoDB Connection
 try:
     mongo = pymongo.MongoClient(
-        host='mongo_1',
+        host='my_mongo',
         port=27017,
         serverSelectionTimeoutMS=1000
         )
@@ -55,17 +55,17 @@ def create_user():
             mimetype="application/json"
             )
 
-'''
+
 # Setup Read
-@app.route("/users", methods=["GET"])
-def get_some_users():
+@app.route("/users/all", methods=["GET"])
+def get_all_users():
     try:
         data = list(db.users.find())
         for user in data:
             user["_id"] = str(user["_id"])
         return Response(
             response=json.dumps(data),
-            status=500,
+            status=200,
             mimetype="application/json"
                 )
     except Exception as ex:
@@ -76,7 +76,7 @@ def get_some_users():
             status=500,
             mimetype="application/json"
             )
-'''
+
 
 # Setup Read Recent
 @app.route("/users", methods=["GET"])
@@ -87,7 +87,7 @@ def get_some_users():
             user["_id"] = str(user["_id"])
         return Response(
             response=json.dumps(data),
-            status=500,
+            status=200,
             mimetype="application/json"
                 )
     except Exception as ex:
